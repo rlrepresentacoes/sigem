@@ -14,6 +14,7 @@ import NotFound from "./pages/NotFound";
 // Module Pages
 import VendasDashboard from "@/modules/vendas/views/Dashboard";
 import ClientsPage from "@/modules/vendas/views/ClientsPage";
+import AnalysisPage from "@/modules/vendas/views/AnalysisPage";
 import GerenciaDashboard from "@/modules/gerencia/views/Dashboard";
 import RecepcaoDashboard from "@/modules/recepcao/views/Dashboard";
 import MonitoriasDashboard from "@/modules/monitorias/views/Dashboard";
@@ -46,6 +47,14 @@ const App = () => (
               element={
                 <ModuleLayout requiredRole="vendas">
                   <ClientsPage />
+                </ModuleLayout>
+              } 
+            />
+            <Route 
+              path="/vendas/analises" 
+              element={
+                <ModuleLayout requiredRole="vendas">
+                  <AnalysisPage />
                 </ModuleLayout>
               } 
             />
