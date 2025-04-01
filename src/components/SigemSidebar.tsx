@@ -191,7 +191,7 @@ const SigemSidebar = ({
           <TooltipProvider delayDuration={300}>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button variant="ghost" className={cn('w-full justify-start text-white/80 hover:text-white hover:bg-white/10', collapsed ? 'px-2' : 'px-3')}>
+                <Button variant="ghost" className="text-center">
                   <Bell className={cn('h-5 w-5', collapsed ? '' : 'mr-3')} />
                   {!collapsed && <span>Notificações</span>}
                 </Button>
