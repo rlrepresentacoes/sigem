@@ -155,7 +155,7 @@ const SigemSidebar = ({
           {moduleItems.map(item => <TooltipProvider key={item.path} delayDuration={300}>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button variant="ghost" onClick={() => navigate(item.path)} className="text-center">
+                  <Button variant="ghost" className={cn('w-full justify-start text-white/80 hover:text-white hover:bg-white/10 transition-colors relative group', location.pathname === item.path ? 'bg-white/15 text-white font-medium' : '', collapsed ? 'px-2' : 'px-3 h-11')} onClick={() => navigate(item.path)}>
                     <item.icon className={cn('h-5 w-5 flex-shrink-0', location.pathname === item.path ? 'text-primary' : 'text-white/70 group-hover:text-white', collapsed ? '' : 'mr-3')} />
                     
                     {!collapsed && <>
