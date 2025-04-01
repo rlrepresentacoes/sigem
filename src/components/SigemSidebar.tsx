@@ -205,7 +205,7 @@ const SigemSidebar = ({
           <TooltipProvider delayDuration={300}>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button variant="ghost" className="text-center">
+                <Button variant="ghost" className="text-right">
                   <Settings className={cn('h-5 w-5', collapsed ? '' : 'mr-3')} />
                   {!collapsed && <span>Configurações</span>}
                 </Button>
