@@ -1,16 +1,15 @@
-
 import { useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const { login } = useAuth();
-
+  const {
+    login
+  } = useAuth();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -22,42 +21,17 @@ const LoginForm = () => {
       setIsLoading(false);
     }
   };
-
-  return (
-    <Card className="w-full max-w-md shadow-lg">
-      <CardHeader className="space-y-1">
-        <CardTitle className="text-2xl font-bold text-center">SIGEM</CardTitle>
-        <CardDescription className="text-center">
-          Sistema de Gestão Empresarial Modular
-        </CardDescription>
-      </CardHeader>
+  return <Card className="w-full max-w-md shadow-lg">
+      
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="w-full"
-            />
+            <Input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required className="w-full" />
           </div>
           <div className="space-y-2">
-            <Input
-              type="password"
-              placeholder="Senha"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="w-full"
-            />
+            <Input type="password" placeholder="Senha" value={password} onChange={e => setPassword(e.target.value)} required className="w-full" />
           </div>
-          <Button
-            type="submit"
-            className="w-full bg-sigem-dark-blue hover:bg-opacity-90"
-            disabled={isLoading}
-          >
+          <Button type="submit" className="w-full bg-sigem-dark-blue hover:bg-opacity-90" disabled={isLoading}>
             {isLoading ? 'Entrando...' : 'Entrar'}
           </Button>
         </form>
@@ -67,8 +41,6 @@ const LoginForm = () => {
           Para acesso de teste, use qualquer email e senha
         </p>
       </CardFooter>
-    </Card>
-  );
+    </Card>;
 };
-
 export default LoginForm;
