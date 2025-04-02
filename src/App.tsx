@@ -3,11 +3,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/context/AuthContext";
 import ModuleLayout from "@/components/layouts/ModuleLayout";
-import PendingApprovalPage from "@/components/PendingApprovalPage";
-import { useAuth } from "@/context/AuthContext";
 
 // Pages
 import LoginPage from "@/pages/LoginPage";
@@ -24,19 +22,6 @@ import RHDashboard from "@/modules/rh/views/Dashboard";
 
 const queryClient = new QueryClient();
 
-// Componente de redirecionamento para usuários com role "pendente"
-const PendingApprovalRoute = () => {
-  const { user, isLoading } = useAuth();
-  
-  if (isLoading) return null;
-  
-  if (user?.role === 'pendente') {
-    return <PendingApprovalPage />;
-  }
-  
-  return <Navigate to="/" />;
-};
-
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -47,16 +32,6 @@ const App = () => (
           <Routes>
             {/* Login Route */}
             <Route path="/" element={<LoginPage />} />
-            
-            {/* Approval Pending Route */}
-            <Route 
-              path="/pending-approval" 
-              element={
-                <AuthProvider>
-                  <PendingApprovalPage />
-                </AuthProvider>
-              } 
-            />
             
             {/* Vendas Module Routes */}
             <Route 
