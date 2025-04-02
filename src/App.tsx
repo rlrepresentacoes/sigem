@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/context/AuthContext";
 import ModuleLayout from "@/components/layouts/ModuleLayout";
+import PendingApprovalPage from "@/components/PendingApprovalPage";
 
 // Pages
 import LoginPage from "@/pages/LoginPage";
@@ -32,6 +33,9 @@ const App = () => (
           <Routes>
             {/* Login Route */}
             <Route path="/" element={<LoginPage />} />
+            
+            {/* Approval Pending Route */}
+            <Route path="/pending-approval" element={<PendingApprovalPage />} />
             
             {/* Vendas Module Routes */}
             <Route 
