@@ -10,6 +10,8 @@ import ModuleLayout from "@/components/layouts/ModuleLayout";
 // Pages
 import LoginPage from "@/pages/LoginPage";
 import NotFound from "./pages/NotFound";
+import PendingApproval from "./pages/PendingApproval";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 
 // Module Pages
 import VendasDashboard from "@/modules/vendas/views/Dashboard";
@@ -32,6 +34,10 @@ const App = () => (
           <Routes>
             {/* Login Route */}
             <Route path="/" element={<LoginPage />} />
+            
+            {/* Auth Related Routes */}
+            <Route path="/pending" element={<PendingApproval />} />
+            <Route path="/reset-password" element={<ResetPasswordPage />} />
             
             {/* Vendas Module Routes */}
             <Route 
