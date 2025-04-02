@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/components/ui/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { Session, User as SupabaseUser } from '@supabase/supabase-js';
+import { Tables } from '@/integrations/supabase/types';
 
 interface UserProfile {
   id: string;
@@ -75,6 +76,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const fetchUserProfile = async (supabaseUser: SupabaseUser) => {
     try {
+      // Tipo explícito na consulta para evitar problemas de tipagem
       const { data: profile, error } = await supabase
         .from('profiles')
         .select('*')
@@ -101,14 +103,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setUser(userProfile);
         setIsAuthenticated(profile.role !== 'pendente');
 
-        // Mostrar toast específico para usuários pendentes
+        // Se a role for pendente, redirecionar para a página de aprovação pendente
         if (profile.role === 'pendente') {
           toast({
             title: 'Acesso pendente',
             description: 'Sua conta está aguardando aprovação de um administrador.',
             variant: 'destructive'
           });
-          navigate('/');
+          navigate('/pending-approval');
         }
       }
     } catch (error) {
