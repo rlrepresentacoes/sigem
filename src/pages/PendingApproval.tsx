@@ -2,7 +2,6 @@
 import { useAuth } from '@/context/AuthContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 
 const PendingApproval = () => {

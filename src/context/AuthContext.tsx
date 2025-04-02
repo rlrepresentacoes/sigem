@@ -4,7 +4,17 @@ import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/components/ui/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { User, Session } from '@supabase/supabase-js';
-import { Tables } from '@/integrations/supabase/types';
+
+// Define the profile type based on the database structure
+interface Profile {
+  id: string;
+  name: string | null;
+  surname: string | null;
+  role: 'gerencia' | 'vendas' | 'recepcao' | 'monitorias' | 'rh' | 'pendente';
+  responsible_name: string | null;
+  photo_url: string | null;
+  job_title: string | null;
+}
 
 interface UserWithProfile {
   id: string;
@@ -78,6 +88,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   // Função para buscar o perfil do usuário do banco de dados
   const fetchUserProfile = async (authUser: User) => {
     try {
+      // Use a type assertion to tell TypeScript that 'profiles' is a valid table
       const { data, error } = await supabase
         .from('profiles')
         .select('*')
@@ -89,21 +100,24 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
 
       if (data) {
+        // Type assertion to treat data as Profile
+        const profile = data as Profile;
+        
         const userProfile: UserWithProfile = {
-          id: data.id,
-          name: data.name,
-          surname: data.surname,
-          role: data.role as UserWithProfile['role'],
-          responsibleName: data.responsible_name,
+          id: profile.id,
+          name: profile.name,
+          surname: profile.surname,
+          role: profile.role,
+          responsibleName: profile.responsible_name,
           email: authUser.email || '',
-          photoUrl: data.photo_url,
-          jobTitle: data.job_title
+          photoUrl: profile.photo_url,
+          jobTitle: profile.job_title
         };
 
         setUser(userProfile);
         
         // Redirecione o usuário com base no perfil
-        if (data.role === 'pendente') {
+        if (profile.role === 'pendente') {
           navigate('/pending');
         }
       }
