@@ -12,12 +12,10 @@ const LoginPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white flex flex-col justify-center items-center p-4">
-      <div className="mb-8 text-center">
-        <h1 className="text-4xl font-bold text-sigem-dark-blue">SIGEM</h1>
-        <p className="text-gray-600">Sistema de Gestão Empresarial Modular</p>
+    <div className="min-h-screen bg-gradient-to-br from-sigem-dark-blue via-[#1b2033] to-[#232643] flex flex-col justify-center items-center p-4">
+      <div className="w-full max-w-md">
+        <LoginForm />
       </div>
-      <LoginForm />
     </div>
   );
 };
