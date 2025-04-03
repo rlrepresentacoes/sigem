@@ -1,3 +1,4 @@
+
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/components/ui/use-toast';
@@ -154,33 +155,34 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       setIsLoading(true);
       
-      // Cadastro básico sem metadados para evitar erros com o trigger
-      const { data, error } = await supabase.auth.signUp({
+      // Primeiro, criar o usuário com Supabase Auth
+      const { data: authData, error: authError } = await supabase.auth.signUp({
         email,
         password
       });
 
-      if (error) {
-        throw error;
+      if (authError) {
+        throw authError;
       }
 
-      // Aguardar a criação do perfil pelo trigger e depois atualizar os dados
-      if (data?.user?.id) {
-        setTimeout(async () => {
-          try {
-            // Atualiza o perfil com os dados do usuário
-            await supabase
-              .from('profiles')
-              .update({ 
-                name, 
-                surname,
-                função: função as any // Cast necessário para compatibilidade
-              })
-              .eq('id', data.user.id);
-          } catch (updateError) {
-            console.error('Erro ao atualizar o perfil do usuário:', updateError);
-          }
-        }, 1000);
+      // Se o usuário foi criado com sucesso, inserimos manualmente o perfil
+      if (authData?.user?.id) {
+        // Criar o perfil do usuário diretamente
+        const { error: profileError } = await supabase
+          .from('profiles')
+          .insert({
+            id: authData.user.id,
+            name,
+            surname,
+            role: 'pendente',
+            responsible_name: `${name} ${surname}`.toUpperCase(),
+            função
+          });
+
+        if (profileError) {
+          console.error('Erro ao criar perfil:', profileError);
+          // Continuar mesmo com erro no perfil, o usuário ainda foi criado
+        }
       }
 
       toast({
