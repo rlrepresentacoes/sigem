@@ -1,4 +1,3 @@
-
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/components/ui/use-toast';
@@ -50,15 +49,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const { toast } = useToast();
 
   useEffect(() => {
-    // Configure o listener para mudanças no estado da autenticação
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, newSession) => {
         setSession(newSession);
         setIsAuthenticated(!!newSession);
         
-        // Se houver uma sessão, busque os dados do perfil
         if (newSession?.user) {
-          // Use setTimeout para evitar deadlock no Supabase
           setTimeout(() => {
             fetchUserProfile(newSession.user);
           }, 0);
@@ -68,7 +64,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
     );
 
-    // Verifique a sessão atual durante a inicialização
     supabase.auth.getSession().then(({ data: { session: currentSession } }) => {
       setSession(currentSession);
       setIsAuthenticated(!!currentSession);
@@ -81,16 +76,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setIsLoading(false);
     });
 
-    // Limpe o listener ao desmontar o componente
     return () => {
       subscription.unsubscribe();
     };
   }, []);
 
-  // Função para buscar o perfil do usuário do banco de dados
   const fetchUserProfile = async (authUser: User) => {
     try {
-      // Use a type assertion to tell TypeScript that 'profiles' is a valid table
       const { data, error } = await supabase
         .from('profiles')
         .select('*')
@@ -102,7 +94,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
 
       if (data) {
-        // Type assertion to treat data as Profile
         const profile = data as Profile;
         
         const userProfile: UserWithProfile = {
@@ -119,7 +110,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
         setUser(userProfile);
         
-        // Redirecione o usuário com base no perfil
         if (profile.role === 'pendente') {
           navigate('/pending');
         }
@@ -163,6 +153,21 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const signup = async (email: string, password: string, name: string, surname: string, função?: string) => {
     try {
       setIsLoading(true);
+      
+      const validFunctions = [
+        'Vendedor', 
+        'Assistente Comercial', 
+        'Recepção', 
+        'Recursos Humanos', 
+        'Gerência', 
+        'Monitoria e Desempenho', 
+        'Outro'
+      ];
+      
+      if (função && !validFunctions.includes(função)) {
+        throw new Error('Função inválida selecionada');
+      }
+      
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
@@ -184,7 +189,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         description: 'Sua conta foi criada e aguarda aprovação.',
       });
       
-      // Navegue para a página de pendência de aprovação
       navigate('/pending');
     } catch (error: any) {
       console.error('Erro de cadastro:', error);
