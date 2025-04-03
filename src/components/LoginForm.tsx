@@ -19,11 +19,22 @@ const loginSchema = z.object({
   password: z.string().min(6, 'A senha deve ter pelo menos 6 caracteres'),
 });
 
+// Lista de funções válidas para validação
+const validFuncoes = [
+  'Vendedor', 
+  'Assistente Comercial', 
+  'Recepção', 
+  'Recursos Humanos', 
+  'Gerência', 
+  'Monitoria e Desempenho', 
+  'Outro'
+] as const;
+
 const signupSchema = z.object({
   name: z.string().min(2, 'Nome precisa ter pelo menos 2 caracteres'),
   surname: z.string().min(2, 'Sobrenome precisa ter pelo menos 2 caracteres'),
   email: z.string().email('Email inválido'),
-  função: z.string({
+  função: z.enum(validFuncoes, {
     required_error: "Selecione sua função",
   }),
   password: z.string().min(6, 'A senha deve ter pelo menos 6 caracteres'),
@@ -53,7 +64,7 @@ const LoginForm = () => {
 
   const signupForm = useForm<SignupFormValues>({
     resolver: zodResolver(signupSchema),
-    defaultValues: { name: '', surname: '', email: '', função: '', password: '', confirmPassword: '' }
+    defaultValues: { name: '', surname: '', email: '', função: undefined as any, password: '', confirmPassword: '' }
   });
   
   const resetPasswordForm = useForm<ResetPasswordFormValues>({
