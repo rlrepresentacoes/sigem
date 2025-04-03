@@ -14,6 +14,7 @@ interface Profile {
   responsible_name: string | null;
   photo_url: string | null;
   job_title: string | null;
+  função: 'Vendedor' | 'Assistente Comercial' | 'Recepção' | 'Recursos Humanos' | 'Gerência' | 'Monitoria e Desempenho' | 'Outro' | null;
 }
 
 interface UserWithProfile {
@@ -25,6 +26,7 @@ interface UserWithProfile {
   email: string;
   photoUrl: string | null;
   jobTitle: string | null;
+  função: 'Vendedor' | 'Assistente Comercial' | 'Recepção' | 'Recursos Humanos' | 'Gerência' | 'Monitoria e Desempenho' | 'Outro' | null;
 }
 
 interface AuthContextType {
@@ -33,7 +35,7 @@ interface AuthContextType {
   logout: () => Promise<void>;
   isAuthenticated: boolean;
   isLoading: boolean;
-  signup: (email: string, password: string, name: string, surname: string) => Promise<void>;
+  signup: (email: string, password: string, name: string, surname: string, função?: string) => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
 }
 
@@ -111,7 +113,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           responsibleName: profile.responsible_name,
           email: authUser.email || '',
           photoUrl: profile.photo_url,
-          jobTitle: profile.job_title
+          jobTitle: profile.job_title,
+          função: profile.função
         };
 
         setUser(userProfile);
@@ -157,7 +160,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  const signup = async (email: string, password: string, name: string, surname: string) => {
+  const signup = async (email: string, password: string, name: string, surname: string, função?: string) => {
     try {
       setIsLoading(true);
       const { data, error } = await supabase.auth.signUp({
@@ -167,6 +170,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           data: {
             name,
             surname,
+            função
           }
         }
       });

@@ -49,6 +49,9 @@ const PendingApproval = () => {
               <p className="text-gray-500">Email:</p>
               <p className="font-medium">{user.email}</p>
               
+              <p className="text-gray-500">Função:</p>
+              <p className="font-medium">{user.função || 'Não especificada'}</p>
+              
               <p className="text-gray-500">Status:</p>
               <p className="font-medium text-amber-600">Pendente de aprovação</p>
             </div>

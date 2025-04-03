@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 import { Eye, EyeOff, Lock, Mail, User } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -22,6 +23,9 @@ const signupSchema = z.object({
   name: z.string().min(2, 'Nome precisa ter pelo menos 2 caracteres'),
   surname: z.string().min(2, 'Sobrenome precisa ter pelo menos 2 caracteres'),
   email: z.string().email('Email inválido'),
+  função: z.string({
+    required_error: "Selecione sua função",
+  }),
   password: z.string().min(6, 'A senha deve ter pelo menos 6 caracteres'),
   confirmPassword: z.string().min(6, 'A senha deve ter pelo menos 6 caracteres'),
 }).refine((data) => data.password === data.confirmPassword, {
@@ -49,7 +53,7 @@ const LoginForm = () => {
 
   const signupForm = useForm<SignupFormValues>({
     resolver: zodResolver(signupSchema),
-    defaultValues: { name: '', surname: '', email: '', password: '', confirmPassword: '' }
+    defaultValues: { name: '', surname: '', email: '', função: '', password: '', confirmPassword: '' }
   });
   
   const resetPasswordForm = useForm<ResetPasswordFormValues>({
@@ -67,7 +71,7 @@ const LoginForm = () => {
 
   const handleSignupSubmit = async (data: SignupFormValues) => {
     try {
-      await signup(data.email, data.password, data.name, data.surname);
+      await signup(data.email, data.password, data.name, data.surname, data.função);
     } catch (error) {
       console.error('Erro no cadastro:', error);
     }
@@ -247,6 +251,32 @@ const LoginForm = () => {
                             />
                           </FormControl>
                         </div>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={signupForm.control}
+                    name="função"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Selecione sua função" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="Vendedor">Vendedor</SelectItem>
+                              <SelectItem value="Assistente Comercial">Assistente Comercial</SelectItem>
+                              <SelectItem value="Recepção">Recepção</SelectItem>
+                              <SelectItem value="Recursos Humanos">Recursos Humanos</SelectItem>
+                              <SelectItem value="Gerência">Gerência</SelectItem>
+                              <SelectItem value="Monitoria e Desempenho">Monitoria e Desempenho</SelectItem>
+                              <SelectItem value="Outro">Outro</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
