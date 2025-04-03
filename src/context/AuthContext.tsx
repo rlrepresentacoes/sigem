@@ -1,4 +1,3 @@
-
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/components/ui/use-toast';
@@ -155,34 +154,31 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       setIsLoading(true);
       
-      // Simplificando o processo de cadastro - apenas enviando dados básicos
-      // sem incluir a função no raw_user_meta_data para evitar problemas com o tipo enumerado
+      // Cadastro básico sem metadados para evitar erros com o trigger
       const { data, error } = await supabase.auth.signUp({
         email,
-        password,
-        options: {
-          data: {
-            name,
-            surname
-          }
-        }
+        password
       });
 
       if (error) {
         throw error;
       }
 
-      // Se o signup foi bem-sucedido e a função foi fornecida, atualizamos o perfil manualmente
-      if (data && data.user && função) {
-        // Aguardar um momento para garantir que o trigger do Supabase já tenha criado o perfil
+      // Aguardar a criação do perfil pelo trigger e depois atualizar os dados
+      if (data?.user?.id) {
         setTimeout(async () => {
           try {
+            // Atualiza o perfil com os dados do usuário
             await supabase
               .from('profiles')
-              .update({ função: função })
-              .eq('id', data.user!.id);
+              .update({ 
+                name, 
+                surname,
+                função: função as any // Cast necessário para compatibilidade
+              })
+              .eq('id', data.user.id);
           } catch (updateError) {
-            console.error('Erro ao atualizar a função do usuário:', updateError);
+            console.error('Erro ao atualizar o perfil do usuário:', updateError);
           }
         }, 1000);
       }
