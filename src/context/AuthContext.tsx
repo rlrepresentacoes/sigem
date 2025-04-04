@@ -5,6 +5,9 @@ import { useToast } from '@/components/ui/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { User, Session } from '@supabase/supabase-js';
 
+// Define o tipo para funções válidas correspondentes ao enum no banco de dados
+type UserFunction = 'Vendedor' | 'Assistente Comercial' | 'Recepção' | 'Recursos Humanos' | 'Gerência' | 'Monitoria e Desempenho' | 'Outro';
+
 // Define the profile type based on the database structure
 interface Profile {
   id: string;
@@ -14,7 +17,7 @@ interface Profile {
   responsible_name: string | null;
   photo_url: string | null;
   job_title: string | null;
-  função: string | null;
+  função: UserFunction | null;
 }
 
 interface UserWithProfile {
@@ -26,7 +29,7 @@ interface UserWithProfile {
   email: string;
   photoUrl: string | null;
   jobTitle: string | null;
-  função: string | null;
+  função: UserFunction | null;
 }
 
 interface AuthContextType {
@@ -151,6 +154,25 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
+  // Função auxiliar para validar e converter para o tipo UserFunction
+  const validateUserFunction = (userFunction?: string): UserFunction => {
+    const validFunctions: UserFunction[] = [
+      'Vendedor', 
+      'Assistente Comercial', 
+      'Recepção', 
+      'Recursos Humanos', 
+      'Gerência', 
+      'Monitoria e Desempenho', 
+      'Outro'
+    ];
+    
+    if (!userFunction || !validFunctions.includes(userFunction as UserFunction)) {
+      return 'Outro'; // Valor padrão se não for válido
+    }
+    
+    return userFunction as UserFunction;
+  };
+
   const signup = async (email: string, password: string, name: string, surname: string, função?: string) => {
     try {
       setIsLoading(true);
@@ -167,6 +189,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       // Se o usuário foi criado com sucesso, inserimos manualmente o perfil
       if (authData?.user?.id) {
+        // Converter e validar o valor da função
+        const validatedFunction = validateUserFunction(função);
+        
         // Criar o perfil do usuário diretamente
         const { error: profileError } = await supabase
           .from('profiles')
@@ -176,7 +201,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             surname,
             role: 'pendente',
             responsible_name: `${name} ${surname}`.toUpperCase(),
-            função
+            função: validatedFunction
           });
 
         if (profileError) {
