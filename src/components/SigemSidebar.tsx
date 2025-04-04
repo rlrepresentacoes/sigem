@@ -131,9 +131,7 @@ const SigemSidebar = ({
       {/* Sidebar Header - Logo and Toggle */}
       <div className={cn("flex items-center px-4 py-3 h-16", collapsed ? "justify-center" : "justify-between")}>
         {!collapsed && <div className="text-xl font-bold tracking-tight flex items-center">
-            <span className="bg-white/10 rounded-md p-1 mr-2">
-              <span className="text-white text-lg font-extrabold">S</span>
-            </span>
+            
             {getModuleTitle()}
           </div>}
 
