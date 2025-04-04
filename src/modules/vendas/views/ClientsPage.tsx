@@ -1,39 +1,19 @@
-
 import { PlusCircle, Filter, Download } from 'lucide-react';
 import { useState } from 'react';
 import ClientTable from '../components/ClientTable';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
+import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Label } from '@/components/ui/label';
-
 const ClientsPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedFilter, setSelectedFilter] = useState<string | undefined>(undefined);
-
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
-
-  return (
-    <div className="space-y-6">
+  return <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Gestão de Clientes</h1>
@@ -60,7 +40,7 @@ const ClientsPage = () => {
               <div className="grid gap-4 py-4">
                 <div className="space-y-2">
                   <Label htmlFor="status">Status</Label>
-                  <Select onValueChange={(val) => setSelectedFilter(val)}>
+                  <Select onValueChange={val => setSelectedFilter(val)}>
                     <SelectTrigger id="status">
                       <SelectValue placeholder="Selecione um status" />
                     </SelectTrigger>
@@ -115,28 +95,18 @@ const ClientsPage = () => {
             Exportar
           </Button>
           
-          <Button className="bg-sigem-dark-blue hover:bg-blue-800 transition-colors">
-            <PlusCircle className="mr-2 h-4 w-4" />
-            Novo Cliente
-          </Button>
+          
         </div>
       </div>
       
       <Card className="overflow-hidden border-none shadow-sm">
         <CardContent className="p-0">
           <div className="p-4 border-b">
-            <Input
-              placeholder="Buscar por razão social, grupo, fornecedor..."
-              value={searchTerm}
-              onChange={handleSearchChange}
-              className="max-w-md"
-            />
+            <Input placeholder="Buscar por razão social, grupo, fornecedor..." value={searchTerm} onChange={handleSearchChange} className="max-w-md" />
           </div>
           <ClientTable searchTerm={searchTerm} statusFilter={selectedFilter} />
         </CardContent>
       </Card>
-    </div>
-  );
+    </div>;
 };
-
 export default ClientsPage;
