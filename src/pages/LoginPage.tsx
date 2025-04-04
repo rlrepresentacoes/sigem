@@ -16,6 +16,9 @@ const LoginPage = () => {
       <div className="w-full max-w-md">
         <LoginForm />
       </div>
+      <div className="mt-6 text-white/50 text-xs text-center">
+        © 2025 RL Representações - Todos os direitos reservados
+      </div>
     </div>
   );
 };

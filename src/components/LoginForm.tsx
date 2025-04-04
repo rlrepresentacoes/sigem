@@ -103,8 +103,8 @@ const LoginForm = () => {
     <>
       <Card className="w-full shadow-xl border-0 bg-white/95 backdrop-blur-sm">
         <CardHeader className="space-y-1 text-center pb-2">
-          <div className="mx-auto mb-2 flex h-20 w-20 items-center justify-center rounded-full bg-sigem-dark-blue">
-            <span className="text-2xl font-bold text-white">S</span>
+          <div className="mx-auto mb-2 flex h-20 w-20 items-center justify-center rounded-full">
+            <img src="/lovable-uploads/f31407fa-81f2-4a3f-8a5a-bd6195d196ac.png" alt="Logo RL Representações" className="h-20 w-20" />
           </div>
           <CardTitle className="text-2xl font-bold tracking-tight text-sigem-dark-blue">SIGEM</CardTitle>
           <p className="text-sm text-gray-500">Sistema de Gestão Empresarial Modular</p>

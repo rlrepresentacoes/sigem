@@ -8,9 +8,11 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from "@/components/ui/badge";
+
 interface SidebarProps {
   className?: string;
 }
+
 const SigemSidebar = ({
   className
 }: SidebarProps) => {
@@ -22,9 +24,11 @@ const SigemSidebar = ({
   const navigate = useNavigate();
   const location = useLocation();
   const [mounted, setMounted] = useState(false);
+  
   useEffect(() => {
     setMounted(true);
   }, []);
+  
   if (!user) return null;
 
   // Define module navigation items based on user role
@@ -126,17 +130,19 @@ const SigemSidebar = ({
     if (!user.name || !user.surname) return 'U';
     return `${user.name.charAt(0)}${user.surname.charAt(0)}`.toUpperCase();
   };
+  
   if (!mounted) return null;
+  
   return <div className={cn('flex flex-col h-screen bg-gradient-to-b from-sigem-dark-blue via-[#1b2033] to-[#1d2239] text-white transition-all duration-300 border-r border-gray-800/30 shadow-lg', collapsed ? 'w-[72px]' : 'w-64', className)}>
       {/* Sidebar Header - Logo and Toggle */}
       <div className={cn("flex items-center px-4 py-3 h-16", collapsed ? "justify-center" : "justify-between")}>
-        {!collapsed && <div className="text-xl font-bold tracking-tight flex items-center">
-            
+        {!collapsed && <div className="text-xl font-bold tracking-tight flex items-center gap-2">
+            <img src="/lovable-uploads/f31407fa-81f2-4a3f-8a5a-bd6195d196ac.png" alt="Logo RL" className="h-8 w-8" />
             {getModuleTitle()}
           </div>}
 
-        {collapsed && <div className="flex items-center justify-center bg-white/10 rounded-md p-1.5">
-            <span className="text-white text-base font-extrabold">S</span>
+        {collapsed && <div className="flex items-center justify-center p-1.5">
+            <img src="/lovable-uploads/f31407fa-81f2-4a3f-8a5a-bd6195d196ac.png" alt="Logo RL" className="h-8 w-8" />
           </div>}
 
         {!collapsed && <Button variant="ghost" size="icon" onClick={() => setCollapsed(!collapsed)} className="text-white hover:bg-white/10 rounded-full transition-colors">
@@ -260,4 +266,5 @@ const SigemSidebar = ({
       </div>
     </div>;
 };
+
 export default SigemSidebar;
