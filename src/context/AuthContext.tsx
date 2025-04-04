@@ -14,7 +14,7 @@ interface Profile {
   responsible_name: string | null;
   photo_url: string | null;
   job_title: string | null;
-  função: 'Vendedor' | 'Assistente Comercial' | 'Recepção' | 'Recursos Humanos' | 'Gerência' | 'Monitoria e Desempenho' | 'Outro' | null;
+  função: string | null;
 }
 
 interface UserWithProfile {
@@ -26,7 +26,7 @@ interface UserWithProfile {
   email: string;
   photoUrl: string | null;
   jobTitle: string | null;
-  função: 'Vendedor' | 'Assistente Comercial' | 'Recepção' | 'Recursos Humanos' | 'Gerência' | 'Monitoria e Desempenho' | 'Outro' | null;
+  função: string | null;
 }
 
 interface AuthContextType {

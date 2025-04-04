@@ -12,7 +12,7 @@ export type Database = {
       profiles: {
         Row: {
           created_at: string | null
-          função: Database["public"]["Enums"]["user_function"] | null
+          função: string | null
           id: string
           job_title: string | null
           name: string | null
@@ -24,7 +24,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string | null
-          função?: Database["public"]["Enums"]["user_function"] | null
+          função?: string | null
           id: string
           job_title?: string | null
           name?: string | null
@@ -36,7 +36,7 @@ export type Database = {
         }
         Update: {
           created_at?: string | null
-          função?: Database["public"]["Enums"]["user_function"] | null
+          função?: string | null
           id?: string
           job_title?: string | null
           name?: string | null
