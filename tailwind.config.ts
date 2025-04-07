@@ -65,7 +65,18 @@ export default {
 				},
 				sigem: {
 					"dark-blue": "#161a2d",
-					"white": "#ffffff"
+					"white": "#ffffff",
+					"blue": "#2563eb",
+					"light-blue": "#3b82f6",
+					"indigo": "#4f46e5",
+					"purple": "#8b5cf6",
+					"pink": "#ec4899",
+					"green": "#10b981",
+					"yellow": "#f59e0b",
+					"red": "#ef4444",
+					"orange": "#f97316",
+					"gray": "#6b7280",
+					"light-gray": "#f3f4f6",
 				}
 			},
 			borderRadius: {
@@ -89,11 +100,36 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					from: {
+						opacity: '0',
+						transform: 'translateY(10px)'
+					},
+					to: {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				'slide-in': {
+					from: {
+						transform: 'translateX(-100%)'
+					},
+					to: {
+						transform: 'translateX(0)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.3s ease-out',
+				'slide-in': 'slide-in 0.3s ease-out'
+			},
+			boxShadow: {
+				'soft': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+				'card': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+				'button': '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
 			}
 		}
 	},
