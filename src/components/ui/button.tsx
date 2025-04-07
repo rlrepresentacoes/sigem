@@ -10,7 +10,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-gradient-to-r from-sigem-blue to-sigem-indigo text-primary-foreground hover:from-sigem-indigo hover:to-sigem-purple shadow-sm transition-all duration-300",
+        default: "bg-gray-900 dark:bg-gray-700 text-white hover:bg-gray-800 dark:hover:bg-gray-600 shadow-sm transition-all duration-300",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90 shadow-sm",
         outline:
@@ -18,7 +18,7 @@ const buttonVariants = cva(
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-sigem-blue underline-offset-4 hover:underline hover:text-sigem-indigo",
+        link: "text-gray-700 dark:text-gray-300 underline-offset-4 hover:underline hover:text-gray-900 dark:hover:text-white",
       },
       size: {
         default: "h-10 px-4 py-2",
