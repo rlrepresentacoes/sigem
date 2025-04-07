@@ -1,5 +1,5 @@
 
-import { ReactNode, useEffect } from 'react';
+import { ReactNode } from 'react';
 import SigemSidebar from '@/components/SigemSidebar';
 import { useAuth } from '@/context/AuthContext';
 import { Navigate } from 'react-router-dom';
@@ -24,10 +24,10 @@ const ModuleLayout = ({ children, requiredRole }: ModuleLayoutProps) => {
   }
 
   return (
-    <div className="flex h-screen overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+    <div className="flex h-screen overflow-hidden bg-sigem-light-gray dark:bg-gray-900">
       <SigemSidebar />
       <main className="flex-1 overflow-auto p-6 transition-all duration-300">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-7xl animate-enter">
           {children}
         </div>
       </main>
