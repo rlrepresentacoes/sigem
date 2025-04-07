@@ -153,7 +153,7 @@ const SigemSidebar = ({
   
   return (
     <div className={cn(
-      'flex flex-col h-screen bg-[#f8f9fa] text-[#333] dark:bg-[#1e222b] dark:text-white transition-all duration-300 border-r border-gray-200 dark:border-gray-800 shadow-md', 
+      'flex flex-col h-screen bg-[#52658C] text-white dark:text-white transition-all duration-300 border-r border-gray-200/20 dark:border-gray-800 shadow-md', 
       collapsed ? 'w-[80px]' : 'w-72', 
       className
     )}>
@@ -170,8 +170,8 @@ const SigemSidebar = ({
           
           {!collapsed && (
             <div className="flex flex-col">
-              <h1 className="font-bold tracking-tight text-lg text-gray-800 dark:text-white">SIGEM</h1>
-              <p className="text-xs font-light text-gray-500 dark:text-gray-400 -mt-0.5">{getModuleTitle()}</p>
+              <h1 className="font-bold tracking-tight text-lg text-white">SIGEM</h1>
+              <p className="text-xs font-light text-gray-200 dark:text-gray-300 -mt-0.5">{getModuleTitle()}</p>
             </div>
           )}
         </div>
@@ -181,7 +181,7 @@ const SigemSidebar = ({
             variant="ghost" 
             size="icon" 
             onClick={() => setCollapsed(!collapsed)} 
-            className="text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 rounded-full transition-colors h-8 w-8"
+            className="text-gray-200 hover:bg-white/10 dark:text-gray-300 dark:hover:bg-gray-800 rounded-full transition-colors h-8 w-8"
           >
             <ChevronLeft size={18} />
             <span className="sr-only">Recolher</span>
@@ -189,11 +189,11 @@ const SigemSidebar = ({
         )}
       </div>
 
-      <Separator className="bg-gray-200 dark:bg-gray-800 my-1" />
+      <Separator className="bg-white/20 dark:bg-gray-700 my-1" />
 
       {/* Navigation Items */}
       <div className="flex-1 overflow-y-auto py-5 px-3 flex flex-col space-y-2">
-        <div className={cn("text-xs font-medium uppercase text-gray-500 dark:text-gray-400 mb-2 px-3", collapsed && "sr-only")}>
+        <div className={cn("text-xs font-medium uppercase text-gray-200 dark:text-gray-300 mb-2 px-3", collapsed && "sr-only")}>
           Navegação
         </div>
         
@@ -209,8 +209,8 @@ const SigemSidebar = ({
                       "relative w-full justify-start font-medium",
                       collapsed ? "px-0 h-12" : "px-3",
                       location.pathname === item.path 
-                        ? "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white" 
-                        : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800/70 hover:text-gray-900 dark:hover:text-white"
+                        ? "bg-white/20 dark:bg-gray-700 text-white dark:text-white" 
+                        : "text-gray-100 dark:text-gray-300 hover:bg-white/10 dark:hover:bg-gray-800/70 hover:text-white dark:hover:text-white"
                     )}
                   >
                     <div className={cn(
@@ -219,31 +219,31 @@ const SigemSidebar = ({
                     )}>
                       <item.icon className={cn(
                         'h-5 w-5 flex-shrink-0',
-                        location.pathname === item.path ? 'text-gray-700 dark:text-gray-200' : 'text-gray-500 dark:text-gray-400'
+                        location.pathname === item.path ? 'text-white dark:text-white' : 'text-gray-200 dark:text-gray-300'
                       )} />
                       
                       {!collapsed && <span className="truncate">{item.name}</span>}
                       {collapsed && <span className="text-[10px]">{item.name}</span>}
                       
                       {!collapsed && item.badge && (
-                        <Badge variant="outline" className="ml-auto bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700">
+                        <Badge variant="outline" className="ml-auto bg-white/10 dark:bg-gray-800 text-white dark:text-gray-200 border-white/20 dark:border-gray-700 hover:bg-white/20 dark:hover:bg-gray-700">
                           {item.badge}
                         </Badge>
                       )}
                       
                       {!collapsed && item.new && (
-                        <Badge variant="outline" className="ml-auto bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 border-emerald-100 dark:border-emerald-800/30 hover:bg-emerald-100 dark:hover:bg-emerald-900/30">
+                        <Badge variant="outline" className="ml-auto bg-emerald-900/20 dark:bg-emerald-900/20 text-emerald-300 dark:text-emerald-400 border-emerald-800/30 dark:border-emerald-800/30 hover:bg-emerald-900/30 dark:hover:bg-emerald-900/30">
                           Novo
                         </Badge>
                       )}
                     </div>
                     
                     {location.pathname === item.path && (
-                      <div className="absolute left-0 top-0 bottom-0 w-1 bg-gray-400 dark:bg-gray-300 rounded-r-full" />
+                      <div className="absolute left-0 top-0 bottom-0 w-1 bg-white dark:bg-white rounded-r-full" />
                     )}
                     
                     {collapsed && item.badge && (
-                      <Badge variant="outline" className="absolute -top-1 -right-1 h-5 w-5 p-0 flex items-center justify-center rounded-full bg-gray-700 dark:bg-gray-600 text-white border-0 text-xs">
+                      <Badge variant="outline" className="absolute -top-1 -right-1 h-5 w-5 p-0 flex items-center justify-center rounded-full bg-white/20 dark:bg-gray-600 text-white border-0 text-xs">
                         {item.badge}
                       </Badge>
                     )}
@@ -275,9 +275,9 @@ const SigemSidebar = ({
           ))}
         </nav>
         
-        <Separator className="bg-gray-200 dark:bg-gray-800 my-3" />
+        <Separator className="bg-white/20 dark:bg-gray-700 my-3" />
         
-        <div className={cn("text-xs font-medium uppercase text-gray-500 dark:text-gray-400 mb-2 px-3", collapsed && "sr-only")}>
+        <div className={cn("text-xs font-medium uppercase text-gray-200 dark:text-gray-300 mb-2 px-3", collapsed && "sr-only")}>
           Sistema
         </div>
         
@@ -288,7 +288,7 @@ const SigemSidebar = ({
                 <Button 
                   variant="ghost" 
                   className={cn(
-                    "relative w-full justify-start font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800/70 hover:text-gray-900 dark:hover:text-white",
+                    "relative w-full justify-start font-medium text-gray-100 dark:text-gray-300 hover:bg-white/10 dark:hover:bg-gray-800/70 hover:text-white dark:hover:text-white",
                     collapsed ? "px-0 h-12" : "px-3"
                   )}
                 >
@@ -296,7 +296,7 @@ const SigemSidebar = ({
                     "flex items-center gap-3",
                     collapsed && "flex-col justify-center h-full w-full gap-1"
                   )}>
-                    <Bell className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+                    <Bell className="h-5 w-5 text-gray-200 dark:text-gray-300" />
                     {!collapsed && <span>Notificações</span>}
                     {collapsed && <span className="text-[10px]">Notificar</span>}
                   </div>
@@ -314,7 +314,7 @@ const SigemSidebar = ({
                 <Button 
                   variant="ghost" 
                   className={cn(
-                    "relative w-full justify-start font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800/70 hover:text-gray-900 dark:hover:text-white",
+                    "relative w-full justify-start font-medium text-gray-100 dark:text-gray-300 hover:bg-white/10 dark:hover:bg-gray-800/70 hover:text-white dark:hover:text-white",
                     collapsed ? "px-0 h-12" : "px-3"
                   )}
                 >
@@ -322,7 +322,7 @@ const SigemSidebar = ({
                     "flex items-center gap-3",
                     collapsed && "flex-col justify-center h-full w-full gap-1"
                   )}>
-                    <Settings className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+                    <Settings className="h-5 w-5 text-gray-200 dark:text-gray-300" />
                     {!collapsed && <span>Configurações</span>}
                     {collapsed && <span className="text-[10px]">Config</span>}
                   </div>
@@ -337,20 +337,20 @@ const SigemSidebar = ({
       </div>
 
       {/* User Profile Section */}
-      <div className="border-t border-gray-200 dark:border-gray-800 p-4">
+      <div className="border-t border-white/20 dark:border-gray-700 p-4">
         <div className={cn("flex items-center", collapsed ? "flex-col gap-2" : "gap-3")}>
-          <Avatar className="h-10 w-10 border-2 border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white shadow-sm">
-            <AvatarFallback className="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-white">
+          <Avatar className="h-10 w-10 border-2 border-white/20 dark:border-gray-700 bg-white/10 dark:bg-gray-800 text-white shadow-sm">
+            <AvatarFallback className="bg-white/10 dark:bg-gray-700 text-white">
               {getUserInitials()}
             </AvatarFallback>
           </Avatar>
           
           {!collapsed && (
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium truncate text-gray-800 dark:text-white">
+              <p className="text-sm font-medium truncate text-white">
                 {user.name} {user.surname}
               </p>
-              <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
+              <p className="text-xs text-gray-200 dark:text-gray-300 truncate">
                 {getModuleTitle()}
               </p>
             </div>
@@ -364,7 +364,7 @@ const SigemSidebar = ({
                 <Button 
                   variant="outline" 
                   className={cn(
-                    'w-full justify-center border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors', 
+                    'w-full justify-center border-white/20 dark:border-gray-700 bg-white/10 dark:bg-gray-800 hover:bg-white/20 dark:hover:bg-gray-700 text-white transition-colors', 
                     collapsed ? 'px-0 aspect-square' : 'px-3'
                   )} 
                   onClick={logout}
@@ -388,7 +388,7 @@ const SigemSidebar = ({
               variant="ghost" 
               size="icon" 
               onClick={() => setCollapsed(!collapsed)} 
-              className="text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 rounded-full aspect-square h-8 w-8"
+              className="text-gray-200 hover:bg-white/10 dark:text-gray-300 dark:hover:bg-gray-800 rounded-full aspect-square h-8 w-8"
             >
               <ChevronRight size={18} />
               <span className="sr-only">Expandir</span>
