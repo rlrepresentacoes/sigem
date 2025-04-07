@@ -12,7 +12,7 @@ const LoginPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sigem-dark-blue via-[#1b2033] to-[#232643] flex flex-col justify-center items-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-sigem-dark-blue via-[#d0d2d9] to-[#d0d2d9] flex flex-col justify-center items-center p-4">
       <div className="w-full max-w-md">
         <LoginForm />
       </div>
