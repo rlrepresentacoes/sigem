@@ -1,4 +1,3 @@
-
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/context/AuthContext';
 import { Button } from '@/components/ui/button';
@@ -49,7 +48,6 @@ const SigemSidebar = ({
   
   if (!user) return null;
 
-  // Define module navigation items based on user role
   const getModuleItems = () => {
     switch (user.role) {
       case 'gerencia':
@@ -145,7 +143,6 @@ const SigemSidebar = ({
   };
   const moduleItems = getModuleItems();
 
-  // Get module title
   const getModuleTitle = () => {
     switch (user.role) {
       case 'gerencia':
@@ -163,7 +160,6 @@ const SigemSidebar = ({
     }
   };
 
-  // Get initials for avatar
   const getUserInitials = () => {
     if (!user.name || !user.surname) return 'U';
     return `${user.name.charAt(0)}${user.surname.charAt(0)}`.toUpperCase();
@@ -177,7 +173,6 @@ const SigemSidebar = ({
       collapsed ? 'w-[80px]' : 'w-64', 
       className
     )}>
-      {/* Sidebar Header - Logo and Toggle */}
       <div className={cn("flex items-center h-16", collapsed ? "px-2 justify-center" : "px-4 justify-between")}>
         <div className={cn("flex items-center gap-3", collapsed ? "justify-center" : "")}>
           <div className="relative flex items-center justify-center rounded-md bg-white/10 p-1.5">
@@ -211,7 +206,6 @@ const SigemSidebar = ({
 
       <Separator className="bg-sidebar-border/30 my-1" />
 
-      {/* Navigation Items */}
       <div className="flex-1 overflow-y-auto py-4 px-2 flex flex-col space-y-2">
         <div className={cn("text-xs font-medium uppercase text-white/40 mb-1 px-3", collapsed && "sr-only")}>
           Navegação
@@ -343,11 +337,10 @@ const SigemSidebar = ({
         </div>
       </div>
 
-      {/* User Profile Section */}
       <div className="border-t border-sidebar-border/30 p-3">
         <div className={cn("flex items-center", collapsed ? "flex-col gap-2" : "gap-3")}>
-          <Avatar className="h-10 w-10 border border-white/20 bg-white/10">
-            <AvatarFallback className="bg-sidebar-primary/20 text-white text-xs">
+          <Avatar className="h-11 w-11 border border-white/20 bg-white/10">
+            <AvatarFallback className="bg-sidebar-primary/20 text-white text-sm">
               {getUserInitials()}
             </AvatarFallback>
           </Avatar>
@@ -364,7 +357,7 @@ const SigemSidebar = ({
           )}
         </div>
         
-        <div className="mt-3">
+        <div className="mt-4">
           <TooltipProvider delayDuration={300}>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -372,7 +365,7 @@ const SigemSidebar = ({
                   variant="outline" 
                   className={cn(
                     'w-full justify-center border-white/20 bg-white/5 hover:bg-white/10 text-white transition-colors', 
-                    collapsed ? 'px-0 h-10 w-10 mx-auto' : 'px-3 text-sm'
+                    collapsed ? 'px-0 h-11 w-11 mx-auto' : 'px-3 text-sm h-10'
                   )} 
                   onClick={logout}
                 >
@@ -390,14 +383,14 @@ const SigemSidebar = ({
         </div>
         
         {collapsed && (
-          <div className="mt-3 flex justify-center">
+          <div className="mt-4 flex justify-center">
             <Button 
               variant="ghost" 
               size="icon" 
               onClick={() => setCollapsed(!collapsed)} 
-              className="text-white/50 hover:bg-white/10 hover:text-white rounded-full aspect-square h-6 w-6"
+              className="text-white/50 hover:bg-white/10 hover:text-white rounded-full aspect-square h-7 w-7"
             >
-              <ChevronRight size={16} />
+              <ChevronRight size={18} />
               <span className="sr-only">Expandir</span>
             </Button>
           </div>
