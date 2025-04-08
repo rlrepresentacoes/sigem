@@ -177,13 +177,9 @@ const SigemSidebar = ({
                       
                       {!collapsed && <span className="truncate text-sm ml-3">{item.name}</span>}
                       
-                      {!collapsed && item.badge && <Badge className="ml-auto bg-white/20 text-white border-0 text-xs">
-                          {item.badge}
-                        </Badge>}
+                      {!collapsed && item.badge}
                       
-                      {!collapsed && item.new && <Badge className="ml-auto bg-sidebar-primary/30 text-white border-0 text-xs">
-                          Novo
-                        </Badge>}
+                      {!collapsed && item.new}
                     </div>
                     
                     {location.pathname === item.path && <div className="absolute left-0 top-0 bottom-0 w-1 bg-sidebar-primary rounded-r-full" />}
