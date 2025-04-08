@@ -1,3 +1,4 @@
+
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/context/AuthContext';
 import { Button } from '@/components/ui/button';
@@ -183,7 +184,7 @@ const SigemSidebar = ({
             <img 
               src="/lovable-uploads/f31407fa-81f2-4a3f-8a5a-bd6195d196ac.png" 
               alt="Logo RL" 
-              className={cn("transition-all", collapsed ? "h-7 w-7" : "h-6 w-6")} 
+              className={cn("transition-all", collapsed ? "h-9 w-9" : "h-7 w-7")} 
             />
           </div>
           
@@ -226,7 +227,7 @@ const SigemSidebar = ({
                     onClick={() => navigate(item.path)} 
                     className={cn(
                       "relative w-full",
-                      collapsed ? "h-14 w-14 mx-auto" : "px-3 h-9 justify-start",
+                      collapsed ? "h-16 w-16 mx-auto" : "px-3 h-10 justify-start",
                       location.pathname === item.path 
                         ? "bg-white/15 text-white hover:bg-white/20" 
                         : "text-white/70 hover:bg-white/10 hover:text-white"
@@ -237,7 +238,7 @@ const SigemSidebar = ({
                       collapsed && "flex-col justify-center h-full w-full"
                     )}>
                       <item.icon className={cn(
-                        collapsed ? 'h-6 w-6' : 'h-5 w-5',
+                        collapsed ? 'h-8 w-8' : 'h-6 w-6',
                         location.pathname === item.path ? 'text-white' : 'text-white/70'
                       )} />
                       
@@ -295,14 +296,14 @@ const SigemSidebar = ({
                   variant="ghost" 
                   className={cn(
                     "relative w-full text-white/70 hover:bg-white/10 hover:text-white",
-                    collapsed ? "h-14 w-14 mx-auto" : "px-3 h-9 justify-start"
+                    collapsed ? "h-16 w-16 mx-auto" : "px-3 h-10 justify-start"
                   )}
                 >
                   <div className={cn(
                     "flex items-center",
                     collapsed && "flex-col justify-center h-full w-full"
                   )}>
-                    <Bell className={collapsed ? 'h-6 w-6' : 'h-5 w-5'} />
+                    <Bell className={collapsed ? 'h-8 w-8' : 'h-6 w-6'} />
                     {!collapsed && <span className="text-sm ml-3">Notificações</span>}
                   </div>
                 </Button>
@@ -321,14 +322,14 @@ const SigemSidebar = ({
                   variant="ghost" 
                   className={cn(
                     "relative w-full text-white/70 hover:bg-white/10 hover:text-white",
-                    collapsed ? "h-14 w-14 mx-auto" : "px-3 h-9 justify-start"
+                    collapsed ? "h-16 w-16 mx-auto" : "px-3 h-10 justify-start"
                   )}
                 >
                   <div className={cn(
                     "flex items-center",
                     collapsed && "flex-col justify-center h-full w-full"
                   )}>
-                    <Settings className={collapsed ? 'h-6 w-6' : 'h-5 w-5'} />
+                    <Settings className={collapsed ? 'h-8 w-8' : 'h-6 w-6'} />
                     {!collapsed && <span className="text-sm ml-3">Configurações</span>}
                   </div>
                 </Button>
