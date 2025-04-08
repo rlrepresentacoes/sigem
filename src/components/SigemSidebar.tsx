@@ -173,7 +173,7 @@ const SigemSidebar = ({
   
   return (
     <div className={cn(
-      'flex flex-col h-screen bg-sigem-dark-blue text-white transition-all duration-300 border-r border-white/10 shadow-sidebar', 
+      'flex flex-col h-screen bg-sidebar text-sidebar-foreground transition-all duration-300 border-r border-sidebar-border shadow-sidebar', 
       collapsed ? 'w-[70px]' : 'w-64', 
       className
     )}>
@@ -209,7 +209,7 @@ const SigemSidebar = ({
         )}
       </div>
 
-      <Separator className="bg-white/10 my-1" />
+      <Separator className="bg-sidebar-border/30 my-1" />
 
       {/* Navigation Items */}
       <div className="flex-1 overflow-y-auto py-4 px-2 flex flex-col space-y-2">
@@ -246,36 +246,36 @@ const SigemSidebar = ({
                       {collapsed && <span className="text-[9px]">{item.name}</span>}
                       
                       {!collapsed && item.badge && (
-                        <Badge className="ml-auto bg-sigem-accent-blue/80 text-white border-0 text-xs">
+                        <Badge className="ml-auto bg-white/20 text-white border-0 text-xs">
                           {item.badge}
                         </Badge>
                       )}
                       
                       {!collapsed && item.new && (
-                        <Badge className="ml-auto bg-sigem-info/80 text-white border-0 text-xs">
+                        <Badge className="ml-auto bg-sidebar-primary/30 text-white border-0 text-xs">
                           Novo
                         </Badge>
                       )}
                     </div>
                     
                     {location.pathname === item.path && (
-                      <div className="absolute left-0 top-0 bottom-0 w-1 bg-white rounded-r-full" />
+                      <div className="absolute left-0 top-0 bottom-0 w-1 bg-sidebar-primary rounded-r-full" />
                     )}
                     
                     {collapsed && item.badge && (
-                      <Badge className="absolute -top-1 -right-1 h-4 w-4 p-0 flex items-center justify-center rounded-full bg-sigem-accent-blue text-white border-0 text-xs">
+                      <Badge className="absolute -top-1 -right-1 h-4 w-4 p-0 flex items-center justify-center rounded-full bg-white/20 text-white border-0 text-xs">
                         {item.badge}
                       </Badge>
                     )}
                     
                     {collapsed && item.new && (
-                      <div className="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-sigem-info" />
+                      <div className="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-sidebar-primary" />
                     )}
                   </Button>
                 </TooltipTrigger>
                 
                 {(collapsed || item.description) && (
-                  <TooltipContent side="right" className="bg-sigem-dark-blue text-white border-white/10">
+                  <TooltipContent side="right" className="bg-sidebar-accent text-sidebar-foreground border-sidebar-border/50">
                     <span className="font-medium">{item.name}</span>
                     {item.description && <span className="text-xs text-white/70 block">{item.description}</span>}
                   </TooltipContent>
@@ -285,7 +285,7 @@ const SigemSidebar = ({
           ))}
         </nav>
         
-        <Separator className="bg-white/10 my-3" />
+        <Separator className="bg-sidebar-border/30 my-3" />
         
         <div className={cn("text-xs font-medium uppercase text-white/40 mb-1 px-3", collapsed && "sr-only")}>
           Sistema
@@ -312,7 +312,7 @@ const SigemSidebar = ({
                   </div>
                 </Button>
               </TooltipTrigger>
-              {collapsed && <TooltipContent side="right" className="bg-sigem-dark-blue text-white border-white/10">
+              {collapsed && <TooltipContent side="right" className="bg-sidebar-accent text-sidebar-foreground border-sidebar-border/50">
                   Notificações
                 </TooltipContent>}
             </Tooltip>
@@ -338,7 +338,7 @@ const SigemSidebar = ({
                   </div>
                 </Button>
               </TooltipTrigger>
-              {collapsed && <TooltipContent side="right" className="bg-sigem-dark-blue text-white border-white/10">
+              {collapsed && <TooltipContent side="right" className="bg-sidebar-accent text-sidebar-foreground border-sidebar-border/50">
                   Configurações
                 </TooltipContent>}
             </Tooltip>
@@ -347,10 +347,10 @@ const SigemSidebar = ({
       </div>
 
       {/* User Profile Section */}
-      <div className="border-t border-white/10 p-3">
+      <div className="border-t border-sidebar-border/30 p-3">
         <div className={cn("flex items-center", collapsed ? "flex-col gap-2" : "gap-3")}>
-          <Avatar className="h-8 w-8 border border-white/20 bg-sigem-accent-blue text-white">
-            <AvatarFallback className="bg-sigem-accent-blue text-white text-xs">
+          <Avatar className="h-8 w-8 border border-white/20 bg-white/10">
+            <AvatarFallback className="bg-sidebar-primary/20 text-white text-xs">
               {getUserInitials()}
             </AvatarFallback>
           </Avatar>
@@ -384,7 +384,7 @@ const SigemSidebar = ({
                 </Button>
               </TooltipTrigger>
               {collapsed && (
-                <TooltipContent side="right" className="bg-sigem-dark-blue text-white border-white/10">
+                <TooltipContent side="right" className="bg-sidebar-accent text-sidebar-foreground border-sidebar-border/50">
                   Sair
                 </TooltipContent>
               )}

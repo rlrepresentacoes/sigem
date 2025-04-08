@@ -101,16 +101,16 @@ const LoginForm = () => {
 
   return (
     <>
-      <Card className="w-full shadow-lg border border-gray-100 bg-white overflow-hidden">
-        <CardHeader className="space-y-1 text-center pb-2 border-b bg-gray-50/50">
-          <div className="mx-auto mb-2 flex h-16 w-16 items-center justify-center rounded-full bg-sigem-dark-blue/5">
+      <Card className="w-full shadow-lg border border-white/30 bg-white/90 backdrop-blur-sm overflow-hidden rounded-xl">
+        <CardHeader className="space-y-1 text-center pb-4 border-b">
+          <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-primary/5">
             <img src="/lovable-uploads/f31407fa-81f2-4a3f-8a5a-bd6195d196ac.png" alt="Logo RL Representações" className="h-12 w-12" />
           </div>
-          <CardTitle className="text-xl font-semibold text-sigem-dark-blue">SIGEM</CardTitle>
-          <p className="text-sm text-gray-500">Sistema de Gestão Empresarial Modular</p>
+          <CardTitle className="text-xl font-semibold text-primary">SIGEM</CardTitle>
+          <p className="text-sm text-muted-foreground">Sistema de Gestão Empresarial Modular</p>
         </CardHeader>
         
-        <CardContent className="pt-5">
+        <CardContent className="pt-6">
           <Tabs defaultValue="login" className="w-full">
             <TabsList className="grid w-full grid-cols-2 mb-6">
               <TabsTrigger value="login">Login</TabsTrigger>
@@ -126,12 +126,12 @@ const LoginForm = () => {
                     render={({ field }) => (
                       <FormItem>
                         <div className="relative">
-                          <Mail className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+                          <Mail className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
                           <FormControl>
                             <Input 
                               placeholder="Email" 
                               type="email" 
-                              className="pl-10 h-10 bg-gray-50/50 border-gray-200 focus-visible:border-sigem-dark-blue focus-visible:ring-sigem-dark-blue/20" 
+                              className="pl-10 h-10 bg-secondary/50 border-input input-focus" 
                               {...field} 
                               disabled={isLoading}
                             />
@@ -148,12 +148,12 @@ const LoginForm = () => {
                     render={({ field }) => (
                       <FormItem>
                         <div className="relative">
-                          <Lock className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+                          <Lock className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
                           <FormControl>
                             <Input 
                               placeholder="Senha" 
                               type={showPassword ? "text" : "password"} 
-                              className="pl-10 pr-10 h-10 bg-gray-50/50 border-gray-200 focus-visible:border-sigem-dark-blue focus-visible:ring-sigem-dark-blue/20" 
+                              className="pl-10 pr-10 h-10 bg-secondary/50 border-input input-focus" 
                               {...field} 
                               disabled={isLoading}
                             />
@@ -162,7 +162,7 @@ const LoginForm = () => {
                             type="button" 
                             variant="ghost" 
                             size="icon" 
-                            className="absolute right-1 top-1 h-8 w-8 text-gray-400 hover:text-gray-600" 
+                            className="absolute right-1 top-1 h-8 w-8 text-muted-foreground hover:text-primary" 
                             onClick={togglePasswordVisibility}
                             disabled={isLoading}
                           >
@@ -180,7 +180,7 @@ const LoginForm = () => {
                   <div className="flex justify-end">
                     <Button 
                       variant="link" 
-                      className="text-sigem-dark-blue p-0 h-auto text-sm" 
+                      className="text-primary p-0 h-auto text-sm" 
                       type="button"
                       onClick={() => setIsResetPasswordOpen(true)}
                       disabled={isLoading}
@@ -191,7 +191,7 @@ const LoginForm = () => {
                   
                   <Button 
                     type="submit" 
-                    className="w-full" 
+                    className="w-full shadow-sm" 
                     variant="gradient"
                     disabled={isLoading}
                   >
@@ -211,11 +211,11 @@ const LoginForm = () => {
                       render={({ field }) => (
                         <FormItem>
                           <div className="relative">
-                            <User className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+                            <User className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
                             <FormControl>
                               <Input 
                                 placeholder="Nome" 
-                                className="pl-10 h-10 bg-gray-50/50 border-gray-200 focus-visible:border-sigem-dark-blue focus-visible:ring-sigem-dark-blue/20" 
+                                className="pl-10 h-10 bg-secondary/50 border-input input-focus" 
                                 {...field} 
                                 disabled={isLoading}
                               />
@@ -234,7 +234,7 @@ const LoginForm = () => {
                           <FormControl>
                             <Input 
                               placeholder="Sobrenome" 
-                              className="h-10 bg-gray-50/50 border-gray-200 focus-visible:border-sigem-dark-blue focus-visible:ring-sigem-dark-blue/20" 
+                              className="h-10 bg-secondary/50 border-input input-focus" 
                               {...field} 
                               disabled={isLoading}
                             />
@@ -251,12 +251,12 @@ const LoginForm = () => {
                     render={({ field }) => (
                       <FormItem>
                         <div className="relative">
-                          <Mail className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+                          <Mail className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
                           <FormControl>
                             <Input 
                               placeholder="Email" 
                               type="email" 
-                              className="pl-10 h-10 bg-gray-50/50 border-gray-200 focus-visible:border-sigem-dark-blue focus-visible:ring-sigem-dark-blue/20" 
+                              className="pl-10 h-10 bg-secondary/50 border-input input-focus" 
                               {...field} 
                               disabled={isLoading}
                             />
@@ -274,7 +274,7 @@ const LoginForm = () => {
                       <FormItem>
                         <FormControl>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <SelectTrigger className="h-10 bg-gray-50/50 border-gray-200 focus:border-sigem-dark-blue focus:ring-sigem-dark-blue/20">
+                            <SelectTrigger className="h-10 bg-secondary/50 border-input focus:border-primary focus:ring-primary/20">
                               <SelectValue placeholder="Selecione sua função" />
                             </SelectTrigger>
                             <SelectContent>
@@ -299,12 +299,12 @@ const LoginForm = () => {
                     render={({ field }) => (
                       <FormItem>
                         <div className="relative">
-                          <Lock className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+                          <Lock className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
                           <FormControl>
                             <Input 
                               placeholder="Senha" 
                               type={showPassword ? "text" : "password"} 
-                              className="pl-10 h-10 bg-gray-50/50 border-gray-200 focus-visible:border-sigem-dark-blue focus-visible:ring-sigem-dark-blue/20" 
+                              className="pl-10 h-10 bg-secondary/50 border-input input-focus" 
                               {...field} 
                               disabled={isLoading}
                             />
@@ -321,12 +321,12 @@ const LoginForm = () => {
                     render={({ field }) => (
                       <FormItem>
                         <div className="relative">
-                          <Lock className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+                          <Lock className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
                           <FormControl>
                             <Input 
                               placeholder="Confirmar senha" 
                               type={showPassword ? "text" : "password"} 
-                              className="pl-10 h-10 bg-gray-50/50 border-gray-200 focus-visible:border-sigem-dark-blue focus-visible:ring-sigem-dark-blue/20" 
+                              className="pl-10 h-10 bg-secondary/50 border-input input-focus" 
                               {...field} 
                               disabled={isLoading}
                             />
@@ -339,7 +339,7 @@ const LoginForm = () => {
                   
                   <Button 
                     type="submit" 
-                    className="w-full" 
+                    className="w-full shadow-sm" 
                     variant="gradient"
                     disabled={isLoading}
                   >
@@ -351,7 +351,7 @@ const LoginForm = () => {
           </Tabs>
         </CardContent>
         
-        <CardFooter className="flex justify-center border-t pt-4 bg-gray-50/50 text-gray-500">
+        <CardFooter className="flex justify-center border-t py-4 bg-secondary/20 text-muted-foreground">
           <p className="text-xs">
             RL Representações - SIGEM v1.0
           </p>
@@ -360,7 +360,7 @@ const LoginForm = () => {
 
       {/* Modal de recuperação de senha */}
       <Dialog open={isResetPasswordOpen} onOpenChange={setIsResetPasswordOpen}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="sm:max-w-md bg-white/95 backdrop-blur-sm">
           <DialogHeader>
             <DialogTitle>Recuperar senha</DialogTitle>
             <DialogDescription>
@@ -376,12 +376,12 @@ const LoginForm = () => {
                 render={({ field }) => (
                   <FormItem>
                     <div className="relative">
-                      <Mail className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+                      <Mail className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
                       <FormControl>
                         <Input 
                           placeholder="Email" 
                           type="email" 
-                          className="pl-10 h-10 bg-gray-50/50 border-gray-200 focus-visible:border-sigem-dark-blue focus-visible:ring-sigem-dark-blue/20" 
+                          className="pl-10 h-10 bg-secondary/50 border-input input-focus" 
                           {...field} 
                           disabled={isLoading}
                         />
@@ -397,7 +397,7 @@ const LoginForm = () => {
                   variant="outline" 
                   onClick={() => setIsResetPasswordOpen(false)}
                   disabled={isLoading}
-                  className="border-gray-200"
+                  className="border-input"
                 >
                   Cancelar
                 </Button>

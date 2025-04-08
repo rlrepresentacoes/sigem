@@ -27,7 +27,7 @@ const ModuleLayout = ({ children, requiredRole }: ModuleLayoutProps) => {
     <div className="flex h-screen overflow-hidden bg-sigem-light-gray dark:bg-gray-900">
       <SigemSidebar />
       <main className="flex-1 overflow-auto p-6 transition-all duration-300">
-        <div className="mx-auto max-w-7xl animate-enter">
+        <div className="mx-auto max-w-7xl animate-enter pb-8">
           {children}
         </div>
       </main>
