@@ -1,3 +1,4 @@
+
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/context/AuthContext';
 import { Button } from '@/components/ui/button';
@@ -173,7 +174,7 @@ const SigemSidebar = ({
   return (
     <div className={cn(
       'flex flex-col h-screen bg-sidebar text-sidebar-foreground transition-all duration-300 border-r border-sidebar-border shadow-sidebar', 
-      collapsed ? 'w-[80px]' : 'w-64', 
+      collapsed ? 'w-[70px]' : 'w-64', 
       className
     )}>
       {/* Sidebar Header - Logo and Toggle */}
@@ -183,7 +184,7 @@ const SigemSidebar = ({
             <img 
               src="/lovable-uploads/f31407fa-81f2-4a3f-8a5a-bd6195d196ac.png" 
               alt="Logo RL" 
-              className={cn("transition-all", collapsed ? "h-7 w-7" : "h-6 w-6")} 
+              className={cn("transition-all", collapsed ? "h-6 w-6" : "h-6 w-6")} 
             />
           </div>
           
@@ -225,23 +226,24 @@ const SigemSidebar = ({
                     variant="ghost" 
                     onClick={() => navigate(item.path)} 
                     className={cn(
-                      "relative w-full",
-                      collapsed ? "h-14 w-14 mx-auto" : "px-3 h-9 justify-start",
+                      "relative w-full justify-start font-medium",
+                      collapsed ? "px-0 h-10" : "px-3 h-9",
                       location.pathname === item.path 
                         ? "bg-white/15 text-white hover:bg-white/20" 
                         : "text-white/70 hover:bg-white/10 hover:text-white"
                     )}
                   >
                     <div className={cn(
-                      "flex items-center",
-                      collapsed && "flex-col justify-center h-full w-full"
+                      "flex items-center gap-3",
+                      collapsed && "flex-col justify-center h-full w-full gap-1"
                     )}>
                       <item.icon className={cn(
-                        collapsed ? 'h-6 w-6' : 'h-5 w-5',
+                        'h-4 w-4 flex-shrink-0',
                         location.pathname === item.path ? 'text-white' : 'text-white/70'
                       )} />
                       
-                      {!collapsed && <span className="truncate text-sm ml-3">{item.name}</span>}
+                      {!collapsed && <span className="truncate text-sm">{item.name}</span>}
+                      {collapsed && <span className="text-[9px]">{item.name}</span>}
                       
                       {!collapsed && item.badge && (
                         <Badge className="ml-auto bg-white/20 text-white border-0 text-xs">
@@ -272,10 +274,12 @@ const SigemSidebar = ({
                   </Button>
                 </TooltipTrigger>
                 
-                <TooltipContent side="right" className="bg-sidebar-accent text-sidebar-foreground border-sidebar-border/50">
-                  <span className="font-medium">{item.name}</span>
-                  {item.description && <span className="text-xs text-white/70 block">{item.description}</span>}
-                </TooltipContent>
+                {(collapsed || item.description) && (
+                  <TooltipContent side="right" className="bg-sidebar-accent text-sidebar-foreground border-sidebar-border/50">
+                    <span className="font-medium">{item.name}</span>
+                    {item.description && <span className="text-xs text-white/70 block">{item.description}</span>}
+                  </TooltipContent>
+                )}
               </Tooltip>
             </TooltipProvider>
           ))}
@@ -294,23 +298,23 @@ const SigemSidebar = ({
                 <Button 
                   variant="ghost" 
                   className={cn(
-                    "relative w-full text-white/70 hover:bg-white/10 hover:text-white",
-                    collapsed ? "h-14 w-14 mx-auto" : "px-3 h-9 justify-start"
+                    "relative w-full justify-start font-medium text-white/70 hover:bg-white/10 hover:text-white",
+                    collapsed ? "px-0 h-10" : "px-3 h-9"
                   )}
                 >
                   <div className={cn(
-                    "flex items-center",
-                    collapsed && "flex-col justify-center h-full w-full"
+                    "flex items-center gap-3",
+                    collapsed && "flex-col justify-center h-full w-full gap-1"
                   )}>
-                    <Bell className={collapsed ? 'h-6 w-6' : 'h-5 w-5'} />
-                    {!collapsed && <span className="text-sm ml-3">Notificações</span>}
+                    <Bell className="h-4 w-4 text-white/70" />
+                    {!collapsed && <span className="text-sm">Notificações</span>}
+                    {collapsed && <span className="text-[9px]">Notificar</span>}
                   </div>
                 </Button>
               </TooltipTrigger>
-              <TooltipContent side="right" className="bg-sidebar-accent text-sidebar-foreground border-sidebar-border/50">
-                <span className="font-medium">Notificações</span>
-                <span className="text-xs text-white/70 block">Visualizar notificações</span>
-              </TooltipContent>
+              {collapsed && <TooltipContent side="right" className="bg-sidebar-accent text-sidebar-foreground border-sidebar-border/50">
+                  Notificações
+                </TooltipContent>}
             </Tooltip>
           </TooltipProvider>
           
@@ -320,23 +324,23 @@ const SigemSidebar = ({
                 <Button 
                   variant="ghost" 
                   className={cn(
-                    "relative w-full text-white/70 hover:bg-white/10 hover:text-white",
-                    collapsed ? "h-14 w-14 mx-auto" : "px-3 h-9 justify-start"
+                    "relative w-full justify-start font-medium text-white/70 hover:bg-white/10 hover:text-white",
+                    collapsed ? "px-0 h-10" : "px-3 h-9"
                   )}
                 >
                   <div className={cn(
-                    "flex items-center",
-                    collapsed && "flex-col justify-center h-full w-full"
+                    "flex items-center gap-3",
+                    collapsed && "flex-col justify-center h-full w-full gap-1"
                   )}>
-                    <Settings className={collapsed ? 'h-6 w-6' : 'h-5 w-5'} />
-                    {!collapsed && <span className="text-sm ml-3">Configurações</span>}
+                    <Settings className="h-4 w-4 text-white/70" />
+                    {!collapsed && <span className="text-sm">Configurações</span>}
+                    {collapsed && <span className="text-[9px]">Config</span>}
                   </div>
                 </Button>
               </TooltipTrigger>
-              <TooltipContent side="right" className="bg-sidebar-accent text-sidebar-foreground border-sidebar-border/50">
-                <span className="font-medium">Configurações</span>
-                <span className="text-xs text-white/70 block">Preferências do sistema</span>
-              </TooltipContent>
+              {collapsed && <TooltipContent side="right" className="bg-sidebar-accent text-sidebar-foreground border-sidebar-border/50">
+                  Configurações
+                </TooltipContent>}
             </Tooltip>
           </TooltipProvider>
         </div>
@@ -345,7 +349,7 @@ const SigemSidebar = ({
       {/* User Profile Section */}
       <div className="border-t border-sidebar-border/30 p-3">
         <div className={cn("flex items-center", collapsed ? "flex-col gap-2" : "gap-3")}>
-          <Avatar className="h-10 w-10 border border-white/20 bg-white/10">
+          <Avatar className="h-8 w-8 border border-white/20 bg-white/10">
             <AvatarFallback className="bg-sidebar-primary/20 text-white text-xs">
               {getUserInitials()}
             </AvatarFallback>
@@ -363,7 +367,7 @@ const SigemSidebar = ({
           )}
         </div>
         
-        <div className="mt-3">
+        <div className="mt-2">
           <TooltipProvider delayDuration={300}>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -371,11 +375,11 @@ const SigemSidebar = ({
                   variant="outline" 
                   className={cn(
                     'w-full justify-center border-white/20 bg-white/5 hover:bg-white/10 text-white transition-colors', 
-                    collapsed ? 'px-0 h-10 w-10 mx-auto' : 'px-3 text-sm'
+                    collapsed ? 'px-0 aspect-square' : 'px-3 text-sm'
                   )} 
                   onClick={logout}
                 >
-                  <LogOut className="h-5 w-5" />
+                  <LogOut className="h-4 w-4" />
                   {!collapsed && <span className="ml-2">Sair</span>}
                 </Button>
               </TooltipTrigger>
@@ -389,7 +393,7 @@ const SigemSidebar = ({
         </div>
         
         {collapsed && (
-          <div className="mt-3 flex justify-center">
+          <div className="mt-2 flex justify-center">
             <Button 
               variant="ghost" 
               size="icon" 
