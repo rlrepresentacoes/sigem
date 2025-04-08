@@ -1,3 +1,4 @@
+
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/context/AuthContext';
 import { Button } from '@/components/ui/button';
@@ -337,9 +338,9 @@ const SigemSidebar = ({
         </div>
       </div>
 
-      <div className="border-t border-sidebar-border/30 p-3">
-        <div className={cn("flex items-center", collapsed ? "flex-col gap-2" : "gap-3")}>
-          <Avatar className="h-11 w-11 border border-white/20 bg-white/10">
+      <div className="border-t border-sidebar-border/30 p-4 flex flex-col items-center">
+        <div className={cn("flex items-center", collapsed ? "flex-col space-y-3" : "w-full gap-3")}>
+          <Avatar className={cn("border border-white/20 bg-white/10", collapsed ? "h-12 w-12" : "h-11 w-11")}>
             <AvatarFallback className="bg-sidebar-primary/20 text-white text-sm">
               {getUserInitials()}
             </AvatarFallback>
@@ -357,7 +358,7 @@ const SigemSidebar = ({
           )}
         </div>
         
-        <div className="mt-4">
+        <div className={cn("w-full", collapsed ? "mt-4" : "mt-4")}>
           <TooltipProvider delayDuration={300}>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -365,11 +366,11 @@ const SigemSidebar = ({
                   variant="outline" 
                   className={cn(
                     'w-full justify-center border-white/20 bg-white/5 hover:bg-white/10 text-white transition-colors', 
-                    collapsed ? 'px-0 h-11 w-11 mx-auto' : 'px-3 text-sm h-10'
+                    collapsed ? 'h-12 w-12 mx-auto' : 'px-3 text-sm h-10'
                   )} 
                   onClick={logout}
                 >
-                  <LogOut className="h-5 w-5" />
+                  <LogOut className={cn(collapsed ? "h-6 w-6" : "h-5 w-5")} />
                   {!collapsed && <span className="ml-2">Sair</span>}
                 </Button>
               </TooltipTrigger>
@@ -388,9 +389,9 @@ const SigemSidebar = ({
               variant="ghost" 
               size="icon" 
               onClick={() => setCollapsed(!collapsed)} 
-              className="text-white/50 hover:bg-white/10 hover:text-white rounded-full aspect-square h-7 w-7"
+              className="text-white/50 hover:bg-white/10 hover:text-white rounded-full aspect-square h-8 w-8"
             >
-              <ChevronRight size={18} />
+              <ChevronRight size={20} />
               <span className="sr-only">Expandir</span>
             </Button>
           </div>
