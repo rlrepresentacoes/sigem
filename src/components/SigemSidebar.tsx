@@ -150,7 +150,7 @@ const SigemSidebar = ({
           
           {!collapsed && <div className="flex flex-col">
               <h1 className="font-bold tracking-tight text-lg">SIGEM</h1>
-              <p className="text-xs font-light text-white/70 -mt-0.5">{getModuleTitle()}</p>
+              
             </div>}
         </div>
 
