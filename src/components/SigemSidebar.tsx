@@ -265,7 +265,7 @@ const SigemSidebar = ({
               <TooltipTrigger asChild>
                 <Button variant="outline" className={cn('w-full justify-center border-white/20 bg-white/5 hover:bg-white/10 text-white transition-colors', collapsed ? 'h-12 w-12 mx-auto' : 'px-3 text-sm h-10')} onClick={logout}>
                   <LogOut className={cn(collapsed ? "h-6 w-6" : "h-5 w-5")} />
-                  {!collapsed && <span className="ml-2">Deslogar</span>}
+                  {!collapsed && <span className="ml-2">Sair</span>}
                 </Button>
               </TooltipTrigger>
               {collapsed && <TooltipContent side="right" className="bg-sidebar-accent text-sidebar-foreground border-sidebar-border/50">
