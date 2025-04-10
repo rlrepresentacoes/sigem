@@ -241,7 +241,7 @@ const SigemSidebar = ({
         </div>
       </div>
 
-      <div className="border-t border-sidebar-border/30 p-4 flex flex-col items-center">
+      <div className="border-t border-sidebar-border/30 p-4 flex flex-col items-center bg-blue-950">
         <div className={cn("flex items-center", collapsed ? "flex-col space-y-3" : "w-full gap-3")}>
           <Avatar className={cn("border border-white/20 bg-white/10", collapsed ? "h-12 w-12" : "h-11 w-11")}>
             <AvatarFallback className="bg-sidebar-primary/20 text-white text-sm">
