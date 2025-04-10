@@ -162,7 +162,7 @@ const SigemSidebar = ({
 
       <Separator className="bg-sidebar-border/30 my-1" />
 
-      <div className="flex-1 overflow-y-auto flex flex-col space-y-2 py-0 px-[8px]">
+      <div className="flex-1 overflow-y-auto flex flex-col space-y-2 py-0 px-[8px] bg-blue-950">
         <div className={cn("text-xs font-medium uppercase text-white/40 mb-1 px-3", collapsed && "sr-only")}>
           Navegação
         </div>
