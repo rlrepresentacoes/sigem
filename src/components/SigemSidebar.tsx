@@ -162,7 +162,7 @@ const SigemSidebar = ({
 
       <Separator className="bg-sidebar-border/30 my-1" />
 
-      <div className="flex-1 overflow-y-auto flex flex-col space-y-2 py-0 px-[8px] bg-blue-950">
+      <div className="flex-1 overflow-y-auto flex flex-col space-y-2 py-0 px-[8px]">
         <div className={cn("text-xs font-medium uppercase text-white/40 mb-1 px-3", collapsed && "sr-only")}>
           Navegação
         </div>
@@ -241,7 +241,7 @@ const SigemSidebar = ({
         </div>
       </div>
 
-      <div className="border-t border-sidebar-border/30 p-4 flex flex-col items-center bg-blue-950">
+      <div className="border-t border-sidebar-border/30 p-4 flex flex-col items-center">
         <div className={cn("flex items-center", collapsed ? "flex-col space-y-3" : "w-full gap-3")}>
           <Avatar className={cn("border border-white/20 bg-white/10", collapsed ? "h-12 w-12" : "h-11 w-11")}>
             <AvatarFallback className="bg-sidebar-primary/20 text-white text-sm">
