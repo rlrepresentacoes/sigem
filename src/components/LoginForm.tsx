@@ -353,7 +353,7 @@ const LoginForm = () => {
         
         <CardFooter className="flex justify-center border-t py-4 bg-secondary/20 text-muted-foreground">
           <p className="text-xs">
-            RL Representações - SIGEM v1.0
+            RL Representações - SIGEM v1.0.0
           </p>
         </CardFooter>
       </Card>
