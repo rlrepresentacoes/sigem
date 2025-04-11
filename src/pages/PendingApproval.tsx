@@ -24,7 +24,7 @@ const PendingApproval = () => {
           <CardTitle className="text-2xl font-bold tracking-tight text-sigem-dark-blue">Aprovação Pendente</CardTitle>
         </CardHeader>
         
-        <CardContent className="space-y-6 pt-4 mx-0 my-0 py-0">
+        <CardContent className="space-y-6 pt-4">
           <div className="bg-amber-50 border-l-4 border-amber-400 p-4 rounded">
             <div className="flex">
               <div className="flex-shrink-0">
