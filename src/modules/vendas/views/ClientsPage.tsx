@@ -1,3 +1,4 @@
+
 import { PlusCircle, Filter, Download, Search, RefreshCw, UserPlus, ArrowUpDown, Calendar, ArrowDown, SlidersHorizontal, UserRound, FileText } from 'lucide-react';
 import { useState } from 'react';
 import ClientTable from '../components/ClientTable';
@@ -8,13 +9,17 @@ import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHe
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+
 const ClientsPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedFilter, setSelectedFilter] = useState<string | undefined>(undefined);
+  
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
-  return <div className="space-y-6">
+  
+  return (
+    <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-sigem-text-primary">Gestão de Clientes</h1>
@@ -107,7 +112,10 @@ const ClientsPage = () => {
             </SheetContent>
           </Sheet>
           
-          
+          <Button variant="default" className="gap-2">
+            <UserPlus className="h-4 w-4" />
+            <span className="hidden sm:inline">Novo Cliente</span>
+          </Button>
         </div>
       </div>
       
@@ -123,7 +131,12 @@ const ClientsPage = () => {
               
               <div className="relative w-full sm:w-auto sm:min-w-[300px]">
                 <Search className="absolute left-3 top-2.5 h-4 w-4 text-sigem-text-secondary/70" />
-                <Input placeholder="Buscar por razão social, grupo, fornecedor..." value={searchTerm} onChange={handleSearchChange} className="pl-10 h-10 bg-secondary/30 border-input focus:border-primary focus:ring-primary/20" />
+                <Input 
+                  placeholder="Buscar por razão social, grupo, fornecedor..." 
+                  value={searchTerm} 
+                  onChange={handleSearchChange} 
+                  className="pl-10 h-10 bg-secondary/30 border-input focus:border-primary focus:ring-primary/20"
+                />
               </div>
             </div>
             
@@ -139,6 +152,8 @@ const ClientsPage = () => {
           </Tabs>
         </CardHeader>
       </Card>
-    </div>;
+    </div>
+  );
 };
+
 export default ClientsPage;
