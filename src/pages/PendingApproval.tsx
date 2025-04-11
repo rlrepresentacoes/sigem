@@ -1,24 +1,24 @@
+
 import { useAuth } from '@/context/AuthContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Navigate } from 'react-router-dom';
-const PendingApproval = () => {
-  const {
-    user,
-    logout,
-    isAuthenticated
-  } = useAuth();
 
+const PendingApproval = () => {
+  const { user, logout, isAuthenticated } = useAuth();
+  
   // Se não estiver autenticado, redirecione para a página de login
   if (!isAuthenticated || !user) {
     return <Navigate to="/" />;
   }
-
+  
   // Se o usuário não estiver pendente, redirecione para o módulo apropriado
   if (user.role !== 'pendente') {
     return <Navigate to={`/${user.role}`} />;
   }
-  return <div className="min-h-screen bg-gradient-to-br from-sigem-dark-blue via-[#1b2033] to-[#232643] flex flex-col justify-center items-center p-4">
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-sigem-dark-blue via-[#1b2033] to-[#232643] flex flex-col justify-center items-center p-4">
       <Card className="w-full max-w-md shadow-xl border-0 bg-white/95 backdrop-blur-sm">
         <CardHeader className="text-center pb-2">
           <CardTitle className="text-2xl font-bold tracking-tight text-sigem-dark-blue">Aprovação Pendente</CardTitle>
@@ -58,14 +58,22 @@ const PendingApproval = () => {
           </div>
           
           <div className="space-y-4 pt-4">
-            <p className="text-sm text-gray-600">Você será informado quando sua conta for aprovada. Enquanto isso, você não poderá acessar o sistema.</p>
+            <p className="text-sm text-gray-600">
+              Você receberá um email quando sua conta for aprovada. Enquanto isso, você não poderá acessar o sistema.
+            </p>
             
-            <Button onClick={() => logout()} variant="outline" className="w-full">
+            <Button 
+              onClick={() => logout()} 
+              variant="outline" 
+              className="w-full"
+            >
               Sair
             </Button>
           </div>
         </CardContent>
       </Card>
-    </div>;
+    </div>
+  );
 };
+
 export default PendingApproval;
